@@ -149,8 +149,8 @@
                 "text": "Login System -\nWebapp +\nMobile App"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -263,23 +263,23 @@
                 },
                 {
                   "id": "7d3734b5-166d-4753-8d86-61d52d0f9b77",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "dev",
+                  "status": "Mitigated",
+                  "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Ein Angreifer benutzt gestohlene oder erratene Zugangsdaten (Username/PW), um sich als legitimer Allsecure-Nutzer am Login-System anzumelden und dadurch einen gültigen OTT zu bekommen. \nAngriffsvektor: Credential Stuffing / Password Brute Force gegen die öffentliche Login-Schnittstelle (viele Login-Versuche, keine oder schwache Sperrmechanismen).",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Ein Angreifer benutzt gestohlene oder erratene Zugangsdaten (Username/Passwort), um sich als legitimer Allsecure-Nutzer am Login-System anzumelden und dadurch einen gültigen OTT zu erhalten.\nAngriffsvektor: Credential Stuffing / Passwort-Brute-Force gegen die öffentliche Login-Schnittstelle (viele Login-Versuche ohne genügend Rate-Limiting oder Account-Sperre).\nCAPEC: CAPEC-653 – Use of Known OS Credentials\nATT&CK: T1078 – Valid Accounts (Taktik: Credential Access / Initial Access)\n",
+                  "mitigation": "Starke Authentisierung und Schutz gegen Brute-Force: Rate-Limiting pro Benutzer/IP, Account-Lockout nach mehreren Fehlversuchen, verpflichtende 2-Faktor-Authentisierung und Überwachung auffälliger Login-Muster durch das SIEM.\nASVS: V2 – Authentication (z.B. Schutz gegen Brute-Force und starke Passwortrichtlinien)\nD3FEND: Multi-Factor Authentication / Rate Limiting (allgemein für Schutz vor Credential Stuffing)\nD (alt): 8 / R: 7 / E: 7 / A: 8  → alter DREA: 30\nD (neu): 7 / R: 3 / E: 3 / A: 5  → neuer DREA: 18\nPriorität nach Mitigation: Medium\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 103,
-                  "score": ""
+                  "score": "18"
                 }
               ],
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "isWebApplication": null,
               "handlesCardPayment": null,
               "threatFrequency": {
-                "spoofing": 1,
+                "spoofing": 3,
                 "tampering": 0,
                 "repudiation": 0,
                 "informationDisclosure": 0,
@@ -303,8 +303,8 @@
                 "text": "2-Faktor-Authe\nntifizierungsdi\nenst"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -404,32 +404,32 @@
               "threats": [
                 {
                   "id": "def2a9cb-c7de-4442-b86c-34f44c41c4d7",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "Repudiation durch unvollständige oder änderbare Logs",
+                  "status": "Mitigated",
+                  "severity": "Low",
                   "type": "Repudiation",
-                  "description": "Bedrohung: Ein interner oder externer Nutzer führt sicherheitsrelevante Aktionen (z. B. viele fehlgeschlagene Logins, verdächtige Exporte) aus und bestreitet später alles, weil die Logs im 2-Faktor-Dienst / Log-DB / SIEM unvollständig oder nachträglich verändert wurden. Angriffsvektor: Deaktivieren der Protokollierung in der Anwendung oder Manipulation/Löschung bestimmter Log-Einträge nach dem Angriff.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Ein Benutzer oder Admin führt sicherheitsrelevante Aktionen (z.B. viele fehlgeschlagene Logins, verdächtige Exporte) aus und bestreitet später alles, weil die Protokollierung unvollständig ist oder Log-Einträge nachträglich verändert bzw. gelöscht wurden.\n\nAngriffsvektor: Deaktivieren oder Umgehen der Protokollierung in der Anwendung oder Manipulation/Löschung bestimmter Log-Einträge nach dem Angriff.\n\nCAPEC: CAPEC-268 – Audit Log Manipulation (führt zu fehlender Accountability / Non-Repudiation)\nATT&CK: T1070 – Indicator Removal on Host\n\nDREA (vor Mitigation): D=7 / R=8 / E=6 / A=6 → 27 (High)\n",
+                  "mitigation": "Vollständige, signierte und zentralisierte Logs: alle sicherheitsrelevanten Events (Logins, 2FA-Events, Admin-Aktionen) zentral loggen, Log-Einträge digital signieren bzw. mit HMAC schützen, Zeitstempel mit NTP synchronisieren und klare organisatorische Regeln zur Aufbewahrung und Auswertung der Logs definieren.\n\nASVS: V8 – Logging (Integrity und Vollständigkeit der Protokollierung sicherstellen)\nD3FEND: Secure Logging Practices / Log Integrity\n\nDREA (nach Mitigation): D=4 / R=3 / E=3 / A=3 → 13\nPriorität nach Mitigation: Low\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 105,
-                  "score": ""
+                  "score": "13"
                 },
                 {
                   "id": "70468319-cbaa-487a-8ae0-5d8a10390643",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "DoS auf den 2-Faktor-Authentifizierungsdienst",
+                  "status": "Mitigated",
+                  "severity": "Medium",
                   "type": "Denial of service",
-                  "description": "Bedrohung: Der 2-Faktor-Dienst ist nicht redundant ausgelegt. Ein Angreifer überlastet den Dienst mit sehr vielen künstlichen Auth-Anfragen, so dass legitime Nutzer keinen OTT mehr erhalten und sich nicht einloggen können. \nAngriffsvektor: Automatisierte HTTP-Requests (Flooding) gegen die 2FA-API, keine oder unzureichende Rate-Limiting-Mechanismen und Ressourcenbegrenzungen.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Der 2-Faktor-Authentifizierungsdienst ist nicht redundant ausgelegt. Ein Angreifer überlastet den Dienst mit sehr vielen künstlichen Auth-Anfragen, sodass legitime Nutzer keinen OTT mehr erhalten und sich nicht einloggen können.\n\nAngriffsvektor: Automatisierte HTTP-Requests (Flooding) gegen die 2FA-API ohne ausreichendes Rate-Limiting oder Volumen-Überwachung.\n\nCAPEC: CAPEC-125 – Flooding\nATT&CK: T1499 – Endpoint Denial of Service (Taktik: Impact)\n\nDREA (vor Mitigation): D=7 / R=9 / E=8 / A=9 → 33 (High)\n",
+                  "mitigation": "Rate-Limiting und Traffic-Filter: API-Gateway mit globalem und per-IP Rate-Limiting vor dem 2FA-Dienst, Erkennung ungewöhnlich hoher Anfragezahlen, automatisches Blocken/Throttling von verdächtigen IP-Adressen und horizontale Skalierung des 2FA-Dienstes.\n\nD3FEND: D3-ITF – Inbound Traffic Filtering, D3-ISVA – Inbound Session Volume Analysis\nASVS: V1/V2 – Schutz vor Missbrauch der Schnittstellen (Rate-Limits, Alarmierung)\n\nDREA (nach Mitigation): D=6 / R=3 / E=3 / A=6 → 18\nPriorität nach Mitigation: Medium\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 108,
-                  "score": ""
+                  "score": "18"
                 }
               ],
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "isBidirectional": false,
               "protocol": "",
               "isEncrypted": false,
@@ -439,9 +439,9 @@
               "threatFrequency": {
                 "spoofing": 0,
                 "tampering": 0,
-                "repudiation": 1,
+                "repudiation": 2,
                 "informationDisclosure": 0,
-                "denialOfService": 1,
+                "denialOfService": 2,
                 "elevationOfPrivilege": 0
               },
               "handlesGoodsOrServices": null
@@ -1366,13 +1366,11 @@
                 "text": "Log-DB"
               },
               "topLine": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -1472,25 +1470,25 @@
               "storesCredentials": false,
               "isEncrypted": true,
               "isSigned": true,
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "threats": [
                 {
                   "id": "844683cf-da7a-4012-8173-f49a97091d6a",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "Manipulation der Log-DB",
+                  "status": "Mitigated",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Bedrohung: Ein Angreifer mit DB-Zugriff manipuliert oder löscht Log-Einträge zu Login- bzw. 2-Faktor-Vorgängen, um Spuren eines Angriffs zu verwischen und Auswertungen zu verfälschen. \nAngriffsvektor: Kompromittiertes Admin-Konto oder unsichere DB-Konfiguration → Ausführen von UPDATE/DELETE-Statements direkt auf den Log-Tabellen.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Ein Angreifer mit Zugriff auf die Log-DB manipuliert oder löscht Log-Einträge zu Login- und 2-Faktor-Vorgängen, um Spuren eines Angriffs zu verwischen und Auswertungen zu verfälschen.\n\nAngriffsvektor: Kompromittiertes Admin-Konto oder unsichere DB-Konfiguration ermöglicht direkte UPDATE/DELETE-Statements auf den Log-Tabellen.\n\nCAPEC: CAPEC-268 – Audit Log Manipulation\nATT&CK: T1070 – Indicator Removal on Host (Löschen/Verändern von Logs zur Defense Evasion)\n\nDREA (vor Mitigation): D=8 / R=8 / E=6 / A=7 → 29 (High)\n",
+                  "mitigation": "Zentrale, manipulationssichere Protokollierung: Logs auf einem append-only Log-Server speichern, File-/DB-Integrity-Monitoring (Prüfsummen/HMAC) für Log-Dateien, strenges RBAC (nur Lesen, kein direktes Löschen) und Protokollierung aller administrativen Aktionen auf der Log-DB.\n\nD3FEND: D3-FIM – File Integrity Monitoring\nASVS: V8 – Error Handling and Logging (Schutz der Logs vor unbefugter Änderung)\n\nDREA (nach Mitigation): D=7 / R=3 / E=3 / A=5 → 18\nPriorität nach Mitigation: Medium\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 104,
-                  "score": ""
+                  "score": "18"
                 }
               ],
               "storesInventory": null,
               "threatFrequency": {
-                "tampering": 1,
+                "tampering": 2,
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 0
@@ -1750,13 +1748,11 @@
                 "text": "SIEM-DB"
               },
               "topLine": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -1853,7 +1849,7 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
@@ -1862,22 +1858,22 @@
               "threats": [
                 {
                   "id": "bbadd329-01e2-4bf9-bc38-96f0bfce20d2",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "Information Disclosure aus der SIEM-DB",
+                  "status": "Mitigated",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Bedrohung: Die SIEM-DB speichert zentrale Logs mit sensiblen Informationen (z. B. Telefonnummern, OTT-Werte, IP-Adressen, Login-Muster). Ein Angreifer liest diese Daten aus und gewinnt vertrauliche Kunden- und Systeminformationen. \nAngriffsvektor: Kompromittiertes SIEM-Admin-Konto oder Ausnutzen einer Schwachstelle im DB-Server → unautorisierte SELECT-Abfragen auf SIEM-Tabellen.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Die SIEM-DB speichert zentrale Logs mit sensiblen Informationen (z.B. Telefonnummern, IP-Adressen, Login-Muster). Ein Angreifer mit Zugriff auf die SIEM-DB kann diese Daten auslesen und vertrauliche Kunden- und Systeminformationen gewinnen.\n\nAngriffsvektor: Kompromittiertes SIEM-Admin-Konto oder Ausnutzen einer Schwachstelle im Datenbank-Server führt zu unautorisierten SELECT-Abfragen auf SIEM-Tabellen.\n\nCAPEC: CAPEC-37 – Retrieve Embedded Sensitive Data\nATT&CK: T1213.006 – Data from Information Repositories: Databases\n\nDREA (vor Mitigation): D=9 / R=7 / E=6 / A=9 → 31 (High)\n",
+                  "mitigation": "Datenminimierung und Verschlüsselung: nur notwendige Informationen loggen (z.B. Hash statt Klartext-Telefonnummer, kein kompletter OTT), SIEM-DB verschlüsseln (at rest), Zugriff nur über den SIEM-Service-User erlauben und das SIEM-Netzwerk segmentieren (nur aus dem Admin-Netz erreichbar).\n\nMASVS: STORAGE-3 / Privacy – keine sensiblen Daten ungeschützt in Logs speichern\nASVS: V9 – Data Protection (Schutz vertraulicher Daten in Speicherung und Transport)\n\nDREA (nach Mitigation): D=7 / R=3 / E=3 / A=6 → 19\nPriorität nach Mitigation: Medium\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 107,
-                  "score": ""
+                  "score": "19"
                 }
               ],
               "threatFrequency": {
                 "tampering": 0,
                 "repudiation": 0,
-                "informationDisclosure": 1,
+                "informationDisclosure": 2,
                 "denialOfService": 0
               }
             }
@@ -2019,8 +2015,8 @@
                 "text": "SIEM_system"
               },
               "body": {
-                "stroke": "red",
-                "strokeWidth": 2.5,
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
             },
@@ -2117,7 +2113,7 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": true,
+              "hasOpenThreats": false,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
@@ -2125,16 +2121,16 @@
               "threats": [
                 {
                   "id": "2d51dca2-5a92-4ca3-a2af-0f0a4f0602c9",
-                  "title": "New STRIDE threat",
-                  "status": "Open",
-                  "severity": "TBD",
+                  "title": "Privilege Escalation im SIEM-System",
+                  "status": "Mitigated",
+                  "severity": "Medium",
                   "type": "Elevation of privilege",
-                  "description": "Bedrohung: Ein Angreifer nutzt eine Schwachstelle oder Fehlkonfiguration im SIEM-System, um von einem normalen Benutzerkonto zu einem SIEM-Admin mit Vollzugriff auf alle Security-Daten und Regeln aufzusteigen. \nAngriffsvektor: Exploit eines Web-Interface-Bugs oder falsche Rollen-/Rechtekonfiguration (z. B. zu breite „Power User“-Rolle), danach Änderung von Regeln, Filtern und Reports.",
-                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "description": "Ein Angreifer nutzt eine Schwachstelle oder Fehlkonfiguration im SIEM-System, um von einem normalen Benutzerkonto zu einem SIEM-Admin mit Vollzugriff auf alle Security-Daten und Regeln aufzusteigen. Danach kann er Erkennungsregeln deaktivieren und Logs manipulieren.\n\nAngriffsvektor: Exploit einer Web-Interface-Schwachstelle oder falsche Rollen-/Rechte-Konfiguration (z.B. zu breite „Power User“-Rolle), anschließend Änderung von SIEM-Regeln und -Reports.\n\nCAPEC: CAPEC-233 – Privilege Escalation\nATT&CK: T1068 – Exploitation for Privilege Escalation\n\nDREA (vor Mitigation): D=8 / R=7 / E=6 / A=7 → 28 (High)\n",
+                  "mitigation": "Striktes Rollen- und Rechtemodell (Least Privilege): getrennte SIEM-Admin-Konten mit MFA, klare Rollen (Viewer, Analyst, Admin) mit minimal nötigen Rechten, Logging aller Konfigurationsänderungen und regelmäßige Rechte-Reviews.\n\nASVS: V4 – Access Control (rollenbasierte Zugriffskontrolle und Least Privilege)\nD3FEND: Hardened Authentication and Authorization Practices\n\nDREA (nach Mitigation): D=7 / R=3 / E=3 / A=5 → 18\nPriorität nach Mitigation: Medium\n",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 109,
-                  "score": ""
+                  "score": "18"
                 }
               ],
               "threatFrequency": {
@@ -2143,8 +2139,15 @@
                 "repudiation": 0,
                 "informationDisclosure": 0,
                 "denialOfService": 0,
-                "elevationOfPrivilege": 1
+                "elevationOfPrivilege": 2
               }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ],
