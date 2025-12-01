@@ -149,8 +149,8 @@
                 "text": "Login System -\nWebapp +\nMobile App"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -260,10 +260,33 @@
                   "new": false,
                   "number": 101,
                   "score": "28"
+                },
+                {
+                  "id": "7d3734b5-166d-4753-8d86-61d52d0f9b77",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Ein Angreifer benutzt gestohlene oder erratene Zugangsdaten (Username/PW), um sich als legitimer Allsecure-Nutzer am Login-System anzumelden und dadurch einen gültigen OTT zu bekommen. \nAngriffsvektor: Credential Stuffing / Password Brute Force gegen die öffentliche Login-Schnittstelle (viele Login-Versuche, keine oder schwache Sperrmechanismen).",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 103,
+                  "score": ""
                 }
               ],
-              "hasOpenThreats": false,
-              "isWebApplication": null
+              "hasOpenThreats": true,
+              "isWebApplication": null,
+              "handlesCardPayment": null,
+              "threatFrequency": {
+                "spoofing": 1,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 0
+              },
+              "handlesGoodsOrServices": null
             }
           },
           {
@@ -280,8 +303,8 @@
                 "text": "2-Faktor-Authe\nntifizierungsdi\nenst"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -378,14 +401,50 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "def2a9cb-c7de-4442-b86c-34f44c41c4d7",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Bedrohung: Ein interner oder externer Nutzer führt sicherheitsrelevante Aktionen (z. B. viele fehlgeschlagene Logins, verdächtige Exporte) aus und bestreitet später alles, weil die Logs im 2-Faktor-Dienst / Log-DB / SIEM unvollständig oder nachträglich verändert wurden. Angriffsvektor: Deaktivieren der Protokollierung in der Anwendung oder Manipulation/Löschung bestimmter Log-Einträge nach dem Angriff.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 105,
+                  "score": ""
+                },
+                {
+                  "id": "70468319-cbaa-487a-8ae0-5d8a10390643",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Bedrohung: Der 2-Faktor-Dienst ist nicht redundant ausgelegt. Ein Angreifer überlastet den Dienst mit sehr vielen künstlichen Auth-Anfragen, so dass legitime Nutzer keinen OTT mehr erhalten und sich nicht einloggen können. \nAngriffsvektor: Automatisierte HTTP-Requests (Flooding) gegen die 2FA-API, keine oder unzureichende Rate-Limiting-Mechanismen und Ressourcenbegrenzungen.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 108,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isBidirectional": false,
               "protocol": "",
               "isEncrypted": false,
               "isPublicNetwork": false,
               "handlesCardPayment": null,
-              "isWebApplication": null
+              "isWebApplication": null,
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 1,
+                "informationDisclosure": 0,
+                "denialOfService": 1,
+                "elevationOfPrivilege": 0
+              },
+              "handlesGoodsOrServices": null
             }
           },
           {
@@ -1307,11 +1366,13 @@
                 "text": "Log-DB"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1411,9 +1472,29 @@
               "storesCredentials": false,
               "isEncrypted": true,
               "isSigned": true,
-              "hasOpenThreats": false,
-              "threats": [],
-              "storesInventory": null
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "844683cf-da7a-4012-8173-f49a97091d6a",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Bedrohung: Ein Angreifer mit DB-Zugriff manipuliert oder löscht Log-Einträge zu Login- bzw. 2-Faktor-Vorgängen, um Spuren eines Angriffs zu verwischen und Auswertungen zu verfälschen. \nAngriffsvektor: Kompromittiertes Admin-Konto oder unsichere DB-Konfiguration → Ausführen von UPDATE/DELETE-Statements direkt auf den Log-Tabellen.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 104,
+                  "score": ""
+                }
+              ],
+              "storesInventory": null,
+              "threatFrequency": {
+                "tampering": 1,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -1669,11 +1750,13 @@
                 "text": "SIEM-DB"
               },
               "topLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -1770,13 +1853,33 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "isALog": false,
               "isEncrypted": false,
               "isSigned": false,
               "storesCredentials": false,
               "storesInventory": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "bbadd329-01e2-4bf9-bc38-96f0bfce20d2",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Bedrohung: Die SIEM-DB speichert zentrale Logs mit sensiblen Informationen (z. B. Telefonnummern, OTT-Werte, IP-Adressen, Login-Muster). Ein Angreifer liest diese Daten aus und gewinnt vertrauliche Kunden- und Systeminformationen. \nAngriffsvektor: Kompromittiertes SIEM-Admin-Konto oder Ausnutzen einer Schwachstelle im DB-Server → unautorisierte SELECT-Abfragen auf SIEM-Tabellen.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 107,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 1,
+                "denialOfService": 0
+              }
             }
           },
           {
@@ -1916,8 +2019,8 @@
                 "text": "SIEM_system"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -2014,12 +2117,34 @@
               "outOfScope": false,
               "isTrustBoundary": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": false,
               "handlesGoodsOrServices": false,
               "isWebApplication": false,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "2d51dca2-5a92-4ca3-a2af-0f0a4f0602c9",
+                  "title": "New STRIDE threat",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Bedrohung: Ein Angreifer nutzt eine Schwachstelle oder Fehlkonfiguration im SIEM-System, um von einem normalen Benutzerkonto zu einem SIEM-Admin mit Vollzugriff auf alle Security-Daten und Regeln aufzusteigen. \nAngriffsvektor: Exploit eines Web-Interface-Bugs oder falsche Rollen-/Rechtekonfiguration (z. B. zu breite „Power User“-Rolle), danach Änderung von Regeln, Filtern und Reports.",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 109,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 0,
+                "tampering": 0,
+                "repudiation": 0,
+                "informationDisclosure": 0,
+                "denialOfService": 0,
+                "elevationOfPrivilege": 1
+              }
             }
           }
         ],
@@ -2032,7 +2157,7 @@
     ],
     "reviewer": "Georg Neugebauer",
     "diagramTop": 10,
-    "threatTop": 102
+    "threatTop": 109
   },
   "version": "2.5.0"
 }
